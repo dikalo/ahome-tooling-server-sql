@@ -28,9 +28,5 @@
 						http://www.springframework.org/schema/task/spring-task.xsd">
 						
 	<bean id="GSQLProvider" class="com.ait.tooling.server.sql.support.spring.GSQLProvider" destroy-method="close" />
-	
-	<context:component-scan base-package="com.ait.tooling.server.sql.rpc.commands" />
-							        
-	<context:mbean-export />
-
+								        
 </beans>
