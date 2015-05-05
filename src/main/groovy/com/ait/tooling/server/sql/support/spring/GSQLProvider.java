@@ -107,6 +107,6 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     @Override
     public String getDefaultSQLDescriptorName()
     {
-        return GSQLContextInstance.get().getPropertiesProvider().getPropertyByName("sqlprovider.default.name");
+        return GSQLContextInstance.get().getPropertyByName("sqlprovider.default.name");
     }
 }
