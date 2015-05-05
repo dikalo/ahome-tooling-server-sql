@@ -26,8 +26,10 @@ import groovy.sql.Sql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +37,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
+import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.json.JSONArray;
 import com.ait.tooling.json.JSONObject;
 
@@ -135,21 +138,38 @@ public class GSQL extends Sql
         }
     }
 
-    private final long _now_() // a bit hacky - I don't have a Duration class that I like anymore... DSJ
+    /*
+     * This is just a reminder that we may need to clean up resources in the future, these are holding places to do that.
+     */
+
+    @Override
+    protected void closeResources(final Connection connection, final Statement statement, final ResultSet results)
     {
-        return System.currentTimeMillis();
+        super.closeResources(connection, statement, results);
+    }
+
+    @Override
+    protected void closeResources(final Connection connection, final Statement statement)
+    {
+        super.closeResources(connection, statement);
+    }
+
+    @Override
+    protected void closeResources(final Connection connection)
+    {
+        super.closeResources(connection);
     }
 
     @Override
     protected Connection createConnection() throws SQLException
     {
-        final long time = _now_();
+        final long time = System.currentTimeMillis();
 
         if ((null == m_precon_list) || (m_precon_list.isEmpty()))
         {
             final Connection connection = super.createConnection();
 
-            logger.info("Time to get a default connection " + (_now_() - time) + "ms");
+            logger.info("Time to get a default connection " + (System.currentTimeMillis() - time) + "ms");
 
             return connection;
         }
@@ -157,9 +177,9 @@ public class GSQL extends Sql
 
         for (IGSQLPreProcessConnectionHandler handler : m_precon_list)
         {
-            connection = handler.preProcessConnection(connection);
+            handler.preProcessConnection(connection);
         }
-        logger.info("Time to get a processed connection " + (_now_() - time) + "ms");
+        logger.info("Time to get a processed connection " + (System.currentTimeMillis() - time) + "ms");
 
         return connection;
     }
@@ -173,24 +193,34 @@ public class GSQL extends Sql
     {
         Objects.requireNonNull(result, "GroovyRowResult was null");
 
-        if (null == mapper)
-        {
-            mapper = s_default_row_object_mapper;
-        }
         final JSONObject object = new JSONObject();
 
         if (null == mapper)
         {
+            mapper = s_default_row_object_mapper;
+        }
+        if (null == mapper)
+        {
             for (Object ikey : result.keySet())
             {
-                object.put(ikey.toString(), result.get(ikey));
+                final String name = StringOps.toTrimOrNull(ikey.toString());
+
+                if (null != name)
+                {
+                    object.put(name, result.get(ikey));
+                }
             }
         }
         else
         {
             for (Object ikey : result.keySet())
             {
-                mapper.map(object, ikey.toString(), result.get(ikey));
+                final String name = StringOps.toTrimOrNull(ikey.toString());
+
+                if (null != name)
+                {
+                    mapper.map(object, name, result.get(ikey));
+                }
             }
         }
         return object;
@@ -205,10 +235,6 @@ public class GSQL extends Sql
     {
         Objects.requireNonNull(rset, "GroovyResultSet was null");
 
-        if (null == mapper)
-        {
-            mapper = s_default_row_object_mapper;
-        }
         final JSONObject object = new JSONObject();
 
         final ResultSetMetaData meta = rset.getMetaData();
@@ -221,16 +247,30 @@ public class GSQL extends Sql
         }
         if (null == mapper)
         {
+            mapper = s_default_row_object_mapper;
+        }
+        if (null == mapper)
+        {
             for (int i = 1; i <= cols; i++)
             {
-                object.put(meta.getColumnLabel(i), rset.getObject(i));
+                final String name = StringOps.toTrimOrNull(meta.getColumnLabel(i));
+
+                if (null != name)
+                {
+                    object.put(name, rset.getObject(i));
+                }
             }
         }
         else
         {
             for (int i = 1; i <= cols; i++)
             {
-                mapper.map(object, meta.getColumnLabel(i), rset.getObject(i));
+                final String name = StringOps.toTrimOrNull(meta.getColumnLabel(i));
+
+                if (null != name)
+                {
+                    mapper.map(object, name, rset.getObject(i));
+                }
             }
         }
         return object;
@@ -245,12 +285,12 @@ public class GSQL extends Sql
     {
         Objects.requireNonNull(list, "List<GroovyRowResult> was null");
 
+        final JSONArray array = new JSONArray();
+
         if (null == mapper)
         {
             mapper = s_default_row_object_mapper;
         }
-        final JSONArray array = new JSONArray();
-
         for (GroovyRowResult result : list)
         {
             array.add(TOJSONOBJECT(result, mapper));
@@ -267,10 +307,6 @@ public class GSQL extends Sql
     {
         Objects.requireNonNull(rset, "GroovyResultSet was null");
 
-        if (null == mapper)
-        {
-            mapper = s_default_row_object_mapper;
-        }
         final JSONArray array = new JSONArray();
 
         final ResultSetMetaData meta = rset.getMetaData();
@@ -281,31 +317,51 @@ public class GSQL extends Sql
         {
             return array;
         }
-        final String[] labs = new String[cols];
+        final String[] labs = new String[cols + 1]; // this is hacky + 1 so I don't have to keep doing an index subtract - 1 in the loops.
 
         for (int i = 1; i <= cols; i++)
         {
-            labs[i - 1] = meta.getColumnLabel(i);
+            labs[i] = StringOps.toTrimOrNull(meta.getColumnLabel(i));
         }
-        while (rset.next())
+        if (null == mapper)
         {
-            final JSONObject object = new JSONObject();
+            mapper = s_default_row_object_mapper;
+        }
+        if (null == mapper)
+        {
+            while (rset.next())
+            {
+                final JSONObject object = new JSONObject();
 
-            if (null == mapper)
-            {
                 for (int i = 1; i <= cols; i++)
                 {
-                    object.put(labs[i - 1], rset.getObject(i));
+                    final String name = labs[i];
+
+                    if (null != name)
+                    {
+                        object.put(name, rset.getObject(i));
+                    }
                 }
+                array.add(object);
             }
-            else
+        }
+        else
+        {
+            while (rset.next())
             {
+                final JSONObject object = new JSONObject();
+
                 for (int i = 1; i <= cols; i++)
                 {
-                    mapper.map(object, labs[i - 1], rset.getObject(i));
+                    final String name = labs[i];
+
+                    if (null != name)
+                    {
+                        mapper.map(object, name, rset.getObject(i));
+                    }
                 }
+                array.add(object);
             }
-            array.add(object);
         }
         return array;
     }

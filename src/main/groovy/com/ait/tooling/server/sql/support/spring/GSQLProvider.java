@@ -18,7 +18,8 @@ package com.ait.tooling.server.sql.support.spring;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -33,9 +34,9 @@ import com.ait.tooling.common.api.java.util.StringOps;
 @ManagedResource(objectName = "com.ait.tooling.server.sql.support.spring:name=GSQLProvider", description = "Manage SQLDescriptors.")
 public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
 {
-    private static final Logger                   logger        = Logger.getLogger(GSQLProvider.class);
+    private static final Logger                          logger        = Logger.getLogger(GSQLProvider.class);
 
-    private final HashMap<String, IGSQLDescriptor> m_descriptors = new HashMap<String, IGSQLDescriptor>();
+    private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors = new LinkedHashMap<String, IGSQLDescriptor>();
 
     @Override
     public IGSQLDescriptor getSQLDescriptor(String name)
@@ -50,15 +51,9 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     }
 
     @Override
-    public Collection<String> keys()
+    public Collection<String> getSQLDescriptorNames()
     {
-        return m_descriptors.keySet();
-    }
-
-    @Override
-    public Collection<IGSQLDescriptor> values()
-    {
-        return m_descriptors.values();
+        return Collections.unmodifiableCollection(m_descriptors.keySet());
     }
 
     @Override
@@ -91,7 +86,7 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     @ManagedOperation(description = "Close all SQLDescriptors")
     public void close() throws IOException
     {
-        for (IGSQLDescriptor item : values())
+        for (IGSQLDescriptor item : m_descriptors.values())
         {
             try
             {

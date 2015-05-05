@@ -22,17 +22,15 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.ait.tooling.common.api.types.IActivatable;
-import com.ait.tooling.common.api.types.INamed;
+import com.ait.tooling.common.api.types.INamedDefinition;
 import com.ait.tooling.server.sql.GSQL;
 import com.ait.tooling.server.sql.IGSQLPreProcessConnectionHandler;
 import com.ait.tooling.server.sql.IGSQLRowObjectMapper;
 import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 
-public interface IGSQLDescriptor extends INamed, IActivatable, Closeable
+public interface IGSQLDescriptor extends INamedDefinition, IActivatable, Closeable
 {
     public DataSource getDataSource();
-    
-    public void setName(String name);
 
     public void setDescription(String description);
 
@@ -49,6 +47,6 @@ public interface IGSQLDescriptor extends INamed, IActivatable, Closeable
     public IGSQLRowObjectMapper getRowObjectMapper();
 
     public void setRowObjectMapper(IGSQLRowObjectMapper row_object_mapper);
-    
+
     public GSQL make();
 }

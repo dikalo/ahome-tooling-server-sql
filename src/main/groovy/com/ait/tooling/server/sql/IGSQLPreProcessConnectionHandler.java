@@ -21,5 +21,5 @@ import java.sql.SQLException;
 
 public interface IGSQLPreProcessConnectionHandler
 {
-    public Connection preProcessConnection(Connection connection) throws SQLException;
+    public void preProcessConnection(Connection connection) throws SQLException;
 }

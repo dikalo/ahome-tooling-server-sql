@@ -97,7 +97,7 @@ public final class GSQLContextInstance implements IGSQLContext
     {
         return getServerContext().getServerManager();
     }
-    
+
     @Override
     public IExecutorServiceDescriptorProvider getExecutorServiceDescriptorProvider()
     {

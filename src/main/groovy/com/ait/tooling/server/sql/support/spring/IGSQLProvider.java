@@ -25,7 +25,5 @@ public interface IGSQLProvider extends Closeable
 
     public String getDefaultSQLDescriptorName();
 
-    public Collection<String> keys();
-
-    public Collection<IGSQLDescriptor> values();
+    public Collection<String> getSQLDescriptorNames();
 }

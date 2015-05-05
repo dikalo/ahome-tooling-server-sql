@@ -19,6 +19,6 @@ package com.ait.tooling.server.sql.support.spring;
 import com.ait.tooling.server.core.support.spring.IServerContext;
 
 public interface IGSQLContext extends IServerContext
-{    
+{
     public IGSQLProvider getGSQLProvider();
 }

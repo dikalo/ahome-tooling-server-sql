@@ -35,9 +35,9 @@ import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 @ManagedResource()
 public class GSQLDescriptor extends Activatible implements IGSQLDescriptor
 {
-    private String                                m_name;
+    private String                                 m_name;
 
-    private final DataSource                      m_data_source;
+    private final DataSource                       m_data_source;
 
     private List<IGSQLStatementSetObjectHandler>   m_setobj_list;
 
@@ -45,7 +45,7 @@ public class GSQLDescriptor extends Activatible implements IGSQLDescriptor
 
     private IGSQLRowObjectMapper                   m_row_object_mapper;
 
-    private String                                m_description = "Generic GSQLDescriptor";
+    private String                                 m_description = "Generic GSQLDescriptor";
 
     public GSQLDescriptor(final DataSource datasource)
     {
