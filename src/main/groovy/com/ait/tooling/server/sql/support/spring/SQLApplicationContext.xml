@@ -27,6 +27,8 @@
 						http://www.springframework.org/schema/task
 						http://www.springframework.org/schema/task/spring-task.xsd">
 						
-	<bean id="GSQLProvider" class="com.ait.tooling.server.sql.support.spring.GSQLProvider" destroy-method="close" />
+	<bean id="GSQLProvider" class="com.ait.tooling.server.sql.support.spring.GSQLProvider" destroy-method="close">
+		<constructor-arg value="${sqlprovider.default.name}" />
+	</bean>
 								        
 </beans>

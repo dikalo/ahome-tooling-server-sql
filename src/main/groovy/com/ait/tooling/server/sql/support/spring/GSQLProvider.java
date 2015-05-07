@@ -36,7 +36,16 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
 {
     private static final Logger                          logger        = Logger.getLogger(GSQLProvider.class);
 
+    private final String                                 m_default;
+
     private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors = new LinkedHashMap<String, IGSQLDescriptor>();
+
+    public GSQLProvider(final String name)
+    {
+        m_default = StringOps.toTrimOrNull(name);
+
+        logger.info("Default ISQLDescriptor Name (" + m_default + ")");
+    }
 
     @Override
     public IGSQLDescriptor getSQLDescriptor(String name)
@@ -104,10 +113,6 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     @Override
     public String getDefaultSQLDescriptorName()
     {
-        final String name = GSQLContextInstance.get().getPropertyByName("sqlprovider.default.name");
-
-        logger.info("Default ISQLDescriptor Name (" + name + ")");
-
-        return name;
+        return m_default;
     }
 }
