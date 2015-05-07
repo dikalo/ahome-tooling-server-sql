@@ -47,6 +47,8 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
         {
             return m_descriptors.get(name);
         }
+        logger.error("ISQLDescriptor Name (" + name + ") not found");
+
         return null;
     }
 
@@ -102,6 +104,10 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     @Override
     public String getDefaultSQLDescriptorName()
     {
-        return GSQLContextInstance.get().getPropertyByName("sqlprovider.default.name");
+        final String name = GSQLContextInstance.get().getPropertyByName("sqlprovider.default.name");
+
+        logger.info("Default ISQLDescriptor Name (" + name + ")");
+
+        return name;
     }
 }
