@@ -19,7 +19,7 @@ apply plugin: 'maven'
 
 sourceCompatibility = 1.7
 
-version = '1.0.37-SNAPSHOT'
+version = '1.0.38-SNAPSHOT'
 
 group = 'com.ahome-it'
 
@@ -53,6 +53,9 @@ configurations {
 
 dependencies {
     compile(group: 'com.ahome-it', name: 'ahome-tooling-server-core', version: '1.0.35-SNAPSHOT')
+    compile(group: 'org.jooq', name: 'jooq', version: '3.6.1')
+    compile(group: 'org.jooq', name: 'jooq-meta', version: '3.6.1')
+    compile(group: 'org.jooq', name: 'jooq-codegen', version: '3.6.1')
 }
 
 uploadArchives {
