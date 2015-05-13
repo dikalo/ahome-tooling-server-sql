@@ -17,7 +17,7 @@
 package com.ait.tooling.server.sql.support.spring;
 
 import java.io.Closeable;
-import java.util.Collection;
+import java.util.List;
 
 public interface IGSQLProvider extends Closeable
 {
@@ -25,5 +25,5 @@ public interface IGSQLProvider extends Closeable
 
     public String getDefaultSQLDescriptorName();
 
-    public Collection<String> getSQLDescriptorNames();
+    public List<String> getSQLDescriptorNames();
 }

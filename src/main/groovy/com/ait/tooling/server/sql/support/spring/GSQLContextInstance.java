@@ -21,7 +21,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.ait.tooling.server.core.jmx.management.IServerManager;
 import com.ait.tooling.server.core.security.IAuthorizationProvider;
+import com.ait.tooling.server.core.support.spring.IBuildDescriptorProvider;
 import com.ait.tooling.server.core.support.spring.IExecutorServiceDescriptorProvider;
+import com.ait.tooling.server.core.support.spring.IPropertiesResolver;
 import com.ait.tooling.server.core.support.spring.IServerContext;
 import com.ait.tooling.server.core.support.spring.ServerContextInstance;
 
@@ -62,10 +64,9 @@ public final class GSQLContextInstance implements IGSQLContext
         return getServerContext().getEnvironment();
     }
 
-    @Override
     public <T> T getBean(final String name, final Class<T> type)
     {
-        return getServerContext().getBean(name, type);
+        return getApplicationContext().getBean(name, type);
     }
 
     @Override
@@ -102,5 +103,17 @@ public final class GSQLContextInstance implements IGSQLContext
     public IExecutorServiceDescriptorProvider getExecutorServiceDescriptorProvider()
     {
         return getServerContext().getExecutorServiceDescriptorProvider();
+    }
+
+    @Override
+    public IBuildDescriptorProvider getBuildDescriptorProvider()
+    {
+        return getServerContext().getBuildDescriptorProvider();
+    }
+
+    @Override
+    public IPropertiesResolver getPropertiesResolver()
+    {
+        return getServerContext().getPropertiesResolver();
     }
 }

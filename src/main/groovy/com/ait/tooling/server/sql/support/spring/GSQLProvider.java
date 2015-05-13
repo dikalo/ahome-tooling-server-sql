@@ -17,9 +17,10 @@
 package com.ait.tooling.server.sql.support.spring;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -62,9 +63,9 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     }
 
     @Override
-    public Collection<String> getSQLDescriptorNames()
+    public List<String> getSQLDescriptorNames()
     {
-        return Collections.unmodifiableCollection(m_descriptors.keySet());
+        return Collections.unmodifiableList(new ArrayList<String>(m_descriptors.keySet()));
     }
 
     @Override
