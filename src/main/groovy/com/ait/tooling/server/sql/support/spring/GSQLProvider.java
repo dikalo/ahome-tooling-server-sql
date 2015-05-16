@@ -1,17 +1,17 @@
 /*
-   Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ * Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.ait.tooling.server.sql.support.spring;
@@ -35,11 +35,13 @@ import com.ait.tooling.common.api.java.util.StringOps;
 @ManagedResource(objectName = "com.ait.tooling.server.sql.support.spring:name=GSQLProvider", description = "Manage SQLDescriptors.")
 public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
 {
-    private static final Logger                          logger        = Logger.getLogger(GSQLProvider.class);
+    private static final long                            serialVersionUID = 3673017438744046691L;
+
+    private static final Logger                          logger           = Logger.getLogger(GSQLProvider.class);
 
     private final String                                 m_default;
 
-    private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors = new LinkedHashMap<String, IGSQLDescriptor>();
+    private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors    = new LinkedHashMap<String, IGSQLDescriptor>();
 
     public GSQLProvider(final String name)
     {
@@ -66,6 +68,12 @@ public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
     public List<String> getSQLDescriptorNames()
     {
         return Collections.unmodifiableList(new ArrayList<String>(m_descriptors.keySet()));
+    }
+
+    @Override
+    public List<IGSQLDescriptor> getSQLDescriptors()
+    {
+        return Collections.unmodifiableList(new ArrayList<IGSQLDescriptor>(m_descriptors.values()));
     }
 
     @Override
