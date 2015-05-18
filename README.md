@@ -16,7 +16,7 @@ https://github.com/ahome-it/ahome-tooling-server-sql
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.0.53-SNAPSHOT</version>
+  <version>1.0.54-SNAPSHOT</version>
 </dependency>
 ```
 
