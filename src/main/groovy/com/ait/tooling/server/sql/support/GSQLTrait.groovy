@@ -68,7 +68,7 @@ public trait GSQLTrait
         {
             return desc.make()
         }
-        return null
+        null
     }
 
     public GSQL gsql()
@@ -79,7 +79,7 @@ public trait GSQLTrait
         {
             return desc.make()
         }
-        return null
+        null
     }
 
     public JSONObject jsql(GString query)

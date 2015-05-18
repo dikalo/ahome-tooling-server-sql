@@ -20,7 +20,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.ait.tooling.json.JSONObject;
-import com.ait.tooling.server.core.jmx.management.IServerManager;
+import com.ait.tooling.server.core.jmx.management.ICoreServerManager;
+import com.ait.tooling.server.core.pubsub.IPubSubDescriptorProvider;
 import com.ait.tooling.server.core.security.AuthorizationResult;
 import com.ait.tooling.server.core.security.IAuthorizationProvider;
 import com.ait.tooling.server.core.support.spring.IBuildDescriptorProvider;
@@ -98,9 +99,9 @@ public final class GSQLContextInstance implements IGSQLContext
     }
 
     @Override
-    public IServerManager getServerManager()
+    public ICoreServerManager getCoreServerManager()
     {
-        return getServerContext().getServerManager();
+        return getServerContext().getCoreServerManager();
     }
 
     @Override
@@ -125,5 +126,11 @@ public final class GSQLContextInstance implements IGSQLContext
     public AuthorizationResult isAuthorized(Object target, JSONObject principals)
     {
         return getServerContext().isAuthorized(target, principals);
+    }
+
+    @Override
+    public IPubSubDescriptorProvider getPubSubDescriptorProvider()
+    {
+        return getServerContext().getPubSubDescriptorProvider();
     }
 }

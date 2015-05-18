@@ -79,7 +79,7 @@ public class GSQLSupport extends CoreGroovySupport implements Serializable
         {
             return desc.make()
         }
-        return null
+        null
     }
 
     public GSQL gsql()
@@ -90,7 +90,7 @@ public class GSQLSupport extends CoreGroovySupport implements Serializable
         {
             return desc.make()
         }
-        return null
+        null
     }
 
     public JSONObject jsql(GString query)
