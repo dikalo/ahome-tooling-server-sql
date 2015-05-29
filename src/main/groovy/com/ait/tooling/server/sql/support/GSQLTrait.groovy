@@ -33,7 +33,7 @@ public trait GSQLTrait
     @Memoized
     public IGSQLContext getGSQLContext()
     {
-        GSQLContextInstance.get()
+        GSQLContextInstance.getGSQLContextInstance()
     }
 
     @Memoized
@@ -45,7 +45,7 @@ public trait GSQLTrait
     @Memoized
     public IGSQLDescriptor getSQLDescriptor(String name)
     {
-        getGSQLProvider().getSQLDescriptor(name)
+        getGSQLProvider().getSQLDescriptor(Objects.requireNonNull(name))
     }
 
     @Memoized
@@ -60,9 +60,10 @@ public trait GSQLTrait
         getGSQLProvider().getDefaultSQLDescriptorName()
     }
 
+    @Memoized
     public GSQL gsql(final String name)
     {
-        final IGSQLDescriptor desc = getSQLDescriptor(name)
+        final IGSQLDescriptor desc = getSQLDescriptor(Objects.requireNonNull(name))
 
         if (desc)
         {
@@ -71,6 +72,7 @@ public trait GSQLTrait
         null
     }
 
+    @Memoized
     public GSQL gsql()
     {
         final IGSQLDescriptor desc = getSQLDescriptor()
@@ -84,46 +86,46 @@ public trait GSQLTrait
 
     public JSONObject jsql(GString query)
     {
-        jrowresults(gsql().rows(query))
+        jrowresults(gsql().rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String name, GString query)
     {
-        jrowresults(gsql(name).rows(query))
+        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String query)
     {
-        jrowresults(gsql().rows(query))
+        jrowresults(gsql().rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String name, String query)
     {
-        jrowresults(gsql(name).rows(query))
+        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(GString query, List<?> params)
     {
-        jrowresults(gsql().rows(query, params))
+        jrowresults(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String name, GString query, List<?> params)
     {
-        jrowresults(gsql(name).rows(query, params))
+        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String query, List<?> params)
     {
-        jrowresults(gsql().rows(query, params))
+        jrowresults(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String name, String query, List<?> params)
     {
-        jrowresults(gsql(name).rows(query, params))
+        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jrowresults(List<GroovyRowResult> list)
     {
-        new JSONObject(GSQL.TOJSONARRAY(list))
+        new JSONObject(GSQL.TOJSONARRAY(Objects.requireNonNull(list)))
     }
 }
