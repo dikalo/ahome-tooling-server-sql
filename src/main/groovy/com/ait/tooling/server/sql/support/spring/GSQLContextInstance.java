@@ -38,6 +38,6 @@ public class GSQLContextInstance extends ServerContextInstance implements IGSQLC
     @Override
     public final IGSQLProvider getGSQLProvider()
     {
-        return Objects.requireNonNull(getBean("GSQLProvider", IGSQLProvider.class), "GSQLProvider is null, initialization error.");
+        return Objects.requireNonNull(getBeanSafely("GSQLProvider", IGSQLProvider.class), "GSQLProvider is null, initialization error.");
     }
 }
