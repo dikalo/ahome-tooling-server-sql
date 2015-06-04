@@ -26,14 +26,14 @@ import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.common.api.types.Activatible;
+import com.ait.tooling.common.api.types.Activatable;
 import com.ait.tooling.server.sql.GSQL;
 import com.ait.tooling.server.sql.IGSQLPreProcessConnectionHandler;
 import com.ait.tooling.server.sql.IGSQLRowObjectMapper;
 import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 
 @ManagedResource()
-public class GSQLDescriptor extends Activatible implements IGSQLDescriptor
+public class GSQLDescriptor extends Activatable implements IGSQLDescriptor
 {
     private static final long                      serialVersionUID = -8176488950309932959L;
 
@@ -51,6 +51,8 @@ public class GSQLDescriptor extends Activatible implements IGSQLDescriptor
 
     public GSQLDescriptor(final DataSource datasource)
     {
+        super(true);
+        
         m_data_source = Objects.requireNonNull(datasource);
     }
 
@@ -104,6 +106,7 @@ public class GSQLDescriptor extends Activatible implements IGSQLDescriptor
     @Override
     public void close() throws IOException
     {
+        setActive(false);
     }
 
     @Override
