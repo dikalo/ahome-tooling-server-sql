@@ -23,13 +23,13 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.ait.tooling.common.api.types.IActivatable;
-import com.ait.tooling.common.api.types.INamedDefinition;
+import com.ait.tooling.common.api.types.INamedType;
 import com.ait.tooling.server.sql.GSQL;
 import com.ait.tooling.server.sql.IGSQLPreProcessConnectionHandler;
 import com.ait.tooling.server.sql.IGSQLRowObjectMapper;
 import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 
-public interface IGSQLDescriptor extends INamedDefinition, IActivatable, Closeable, Serializable
+public interface IGSQLDescriptor extends INamedType, IActivatable, Closeable, Serializable
 {
     public DataSource getDataSource();
 
