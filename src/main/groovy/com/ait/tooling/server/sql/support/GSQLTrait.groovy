@@ -86,46 +86,46 @@ public trait GSQLTrait
 
     public JSONObject jsql(GString query)
     {
-        jrowresults(gsql().rows(Objects.requireNonNull(query)))
+        jrows(gsql().rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String name, GString query)
     {
-        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
+        jrows(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String query)
     {
-        jrowresults(gsql().rows(Objects.requireNonNull(query)))
+        jrows(gsql().rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(String name, String query)
     {
-        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
+        jrows(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query)))
     }
 
     public JSONObject jsql(GString query, List<?> params)
     {
-        jrowresults(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
+        jrows(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String name, GString query, List<?> params)
     {
-        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
+        jrows(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String query, List<?> params)
     {
-        jrowresults(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
+        jrows(gsql().rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
     public JSONObject jsql(String name, String query, List<?> params)
     {
-        jrowresults(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
+        jrows(gsql(Objects.requireNonNull(name)).rows(Objects.requireNonNull(query), Objects.requireNonNull(params)))
     }
 
-    public JSONObject jrowresults(List<GroovyRowResult> list)
+    public JSONObject jrows(List<GroovyRowResult> list)
     {
-        new JSONObject(GSQL.TOJSONARRAY(Objects.requireNonNull(list)))
+        new JSONObject(GSQL.jarr(Objects.requireNonNull(list)))
     }
 }

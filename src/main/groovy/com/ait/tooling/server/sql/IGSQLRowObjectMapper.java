@@ -22,5 +22,5 @@ import com.ait.tooling.json.JSONObject;
 
 public interface IGSQLRowObjectMapper
 {
-    public void map(JSONObject object, String ikey, Object value) throws SQLException;
+    public void mapObject(JSONObject object, String ikey, Object value) throws SQLException;
 }

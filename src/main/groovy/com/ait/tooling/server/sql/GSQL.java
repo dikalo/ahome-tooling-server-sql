@@ -184,12 +184,12 @@ public class GSQL extends Sql
         return connection;
     }
 
-    public static final JSONObject TOJSONOBJECT(final GroovyRowResult result) throws SQLException
+    public static final JSONObject json(final GroovyRowResult result) throws SQLException
     {
-        return TOJSONOBJECT(result, s_default_row_object_mapper);
+        return json(result, s_default_row_object_mapper);
     }
 
-    public static final JSONObject TOJSONOBJECT(final GroovyRowResult result, IGSQLRowObjectMapper mapper) throws SQLException
+    public static final JSONObject json(final GroovyRowResult result, IGSQLRowObjectMapper mapper) throws SQLException
     {
         Objects.requireNonNull(result, "GroovyRowResult was null");
 
@@ -219,19 +219,19 @@ public class GSQL extends Sql
 
                 if (null != name)
                 {
-                    mapper.map(object, name, result.get(ikey));
+                    mapper.mapObject(object, name, result.get(ikey));
                 }
             }
         }
         return object;
     }
 
-    public static final JSONObject TOJSONOBJECT(final GroovyResultSet rset) throws SQLException
+    public static final JSONObject json(final GroovyResultSet rset) throws SQLException
     {
-        return TOJSONOBJECT(rset, s_default_row_object_mapper);
+        return json(rset, s_default_row_object_mapper);
     }
 
-    public static final JSONObject TOJSONOBJECT(final GroovyResultSet rset, IGSQLRowObjectMapper mapper) throws SQLException
+    public static final JSONObject json(final GroovyResultSet rset, IGSQLRowObjectMapper mapper) throws SQLException
     {
         Objects.requireNonNull(rset, "GroovyResultSet was null");
 
@@ -269,19 +269,19 @@ public class GSQL extends Sql
 
                 if (null != name)
                 {
-                    mapper.map(object, name, rset.getObject(i));
+                    mapper.mapObject(object, name, rset.getObject(i));
                 }
             }
         }
         return object;
     }
 
-    public static final JSONArray TOJSONARRAY(final List<GroovyRowResult> list) throws SQLException
+    public static final JSONArray jarr(final List<GroovyRowResult> list) throws SQLException
     {
-        return TOJSONARRAY(list, s_default_row_object_mapper);
+        return jarr(list, s_default_row_object_mapper);
     }
 
-    public static final JSONArray TOJSONARRAY(final List<GroovyRowResult> list, IGSQLRowObjectMapper mapper) throws SQLException
+    public static final JSONArray jarr(final List<GroovyRowResult> list, IGSQLRowObjectMapper mapper) throws SQLException
     {
         Objects.requireNonNull(list, "List<GroovyRowResult> was null");
 
@@ -293,17 +293,17 @@ public class GSQL extends Sql
         }
         for (GroovyRowResult result : list)
         {
-            array.add(TOJSONOBJECT(result, mapper));
+            array.add(json(result, mapper));
         }
         return array;
     }
 
-    public static final JSONArray TOJSONARRAY(GroovyResultSet rset) throws SQLException
+    public static final JSONArray jarr(GroovyResultSet rset) throws SQLException
     {
-        return TOJSONARRAY(rset, s_default_row_object_mapper);
+        return jarr(rset, s_default_row_object_mapper);
     }
 
-    public static final JSONArray TOJSONARRAY(final GroovyResultSet rset, IGSQLRowObjectMapper mapper) throws SQLException
+    public static final JSONArray jarr(final GroovyResultSet rset, IGSQLRowObjectMapper mapper) throws SQLException
     {
         Objects.requireNonNull(rset, "GroovyResultSet was null");
 
@@ -357,7 +357,7 @@ public class GSQL extends Sql
 
                     if (null != name)
                     {
-                        mapper.map(object, name, rset.getObject(i));
+                        mapper.mapObject(object, name, rset.getObject(i));
                     }
                 }
                 array.add(object);
