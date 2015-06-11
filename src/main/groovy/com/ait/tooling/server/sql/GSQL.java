@@ -35,16 +35,12 @@ import java.util.Objects;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
-
 import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.json.JSONArray;
 import com.ait.tooling.json.JSONObject;
 
 public class GSQL extends Sql
 {
-    private static final Logger                    logger = Logger.getLogger(GSQL.class);
-
     private static IGSQLRowObjectMapper            s_default_row_object_mapper;
 
     private List<IGSQLStatementSetObjectHandler>   m_setobj_list;
@@ -163,13 +159,9 @@ public class GSQL extends Sql
     @Override
     protected Connection createConnection() throws SQLException
     {
-        final long time = System.currentTimeMillis();
-
         if ((null == m_precon_list) || (m_precon_list.isEmpty()))
         {
             final Connection connection = super.createConnection();
-
-            logger.info("Time to get a default connection " + (System.currentTimeMillis() - time) + "ms");
 
             return connection;
         }
@@ -179,8 +171,6 @@ public class GSQL extends Sql
         {
             handler.preProcessConnection(connection);
         }
-        logger.info("Time to get a processed connection " + (System.currentTimeMillis() - time) + "ms");
-
         return connection;
     }
 
