@@ -5,6 +5,8 @@ Ahome Tooling Server SQL is a package containing basic server SQL support.
 
 https://github.com/ahome-it/ahome-tooling-server-sql
 
+RELEASE:
+
 ```xml
 <dependency>
   <groupId>com.ahome-it</groupId>
