@@ -32,7 +32,7 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 
 import com.ait.tooling.common.api.java.util.StringOps;
 
-@ManagedResource(objectName = "com.ait.tooling.server.sql.support.spring:name=GSQLProvider", description = "Manage SQLDescriptors.")
+@ManagedResource
 public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
 {
     private static final long                            serialVersionUID = 3673017438744046691L;

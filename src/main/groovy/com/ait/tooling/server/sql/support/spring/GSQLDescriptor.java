@@ -32,7 +32,7 @@ import com.ait.tooling.server.sql.IGSQLPreProcessConnectionHandler;
 import com.ait.tooling.server.sql.IGSQLRowObjectMapper;
 import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 
-@ManagedResource()
+@ManagedResource
 public class GSQLDescriptor extends Activatable implements IGSQLDescriptor
 {
     private static final long                      serialVersionUID = -8176488950309932959L;
