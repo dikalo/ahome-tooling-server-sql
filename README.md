@@ -11,7 +11,7 @@ RELEASE:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.0.93-RELEASE</version>
+  <version>1.0.94-RELEASE</version>
 </dependency>
 ```
 
