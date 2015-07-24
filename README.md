@@ -5,17 +5,30 @@ Ahome Tooling Server SQL is a package containing basic server SQL support.
 
 https://github.com/ahome-it/ahome-tooling-server-sql
 
+Downloading artifacts
+
 RELEASE:
 
+Maven:
 ```xml
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.0.105-RELEASE</version>
+  <version>1.0.106-RELEASE</version>
 </dependency>
 ```
+Gradle:
 
-License
+```
+dependencies {
+    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.0.106-RELEASE')
+}
+```
+Javadoc URL:
+
+http://lienzo-core.com/documents/javadoc/ahome-tooling-server-sql
+
+License:
 
 Ahome Tooling Common is released under version 2.0 of the Apache License.
 
