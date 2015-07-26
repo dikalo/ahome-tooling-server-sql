@@ -24,6 +24,7 @@ import groovy.sql.OutParameter;
 import groovy.sql.ResultSetOutParameter;
 import groovy.sql.Sql;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,8 +40,10 @@ import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.json.JSONArray;
 import com.ait.tooling.json.JSONObject;
 
-public class GSQL extends Sql
+public class GSQL extends Sql implements Serializable
 {
+    private static final long serialVersionUID = -5560768058212999307L;
+
     private static IGSQLRowObjectMapper            s_default_row_object_mapper;
 
     private List<IGSQLStatementSetObjectHandler>   m_setobj_list;
@@ -307,7 +310,7 @@ public class GSQL extends Sql
         {
             return array;
         }
-        final String[] labs = new String[cols + 1]; // this is hacky + 1 so I don't have to keep doing an index subtract - 1 in the loops.
+        final String[] labs = new String[cols + 1];// this is hacky + 1 so I don't have to keep doing an index subtract - 1 in the loops.
 
         for (int i = 1; i <= cols; i++)
         {

@@ -52,7 +52,7 @@ public class GSQLDescriptor extends Activatable implements IGSQLDescriptor
     public GSQLDescriptor(final DataSource datasource)
     {
         super(true);
-        
+
         m_data_source = Objects.requireNonNull(datasource);
     }
 

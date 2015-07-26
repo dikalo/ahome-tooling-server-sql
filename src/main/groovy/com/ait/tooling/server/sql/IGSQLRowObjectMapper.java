@@ -16,11 +16,12 @@
 
 package com.ait.tooling.server.sql;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 
 import com.ait.tooling.json.JSONObject;
 
-public interface IGSQLRowObjectMapper
+public interface IGSQLRowObjectMapper extends Serializable
 {
     public void mapObject(JSONObject object, String ikey, Object value) throws SQLException;
 }
