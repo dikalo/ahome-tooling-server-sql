@@ -14,14 +14,14 @@ Maven:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.0.108-RELEASE</version>
+  <version>1.0.109-RELEASE</version>
 </dependency>
 ```
 Gradle:
 
 ```
 dependencies {
-    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.0.108-RELEASE')
+    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.0.109-RELEASE')
 }
 ```
 Javadoc URL:
