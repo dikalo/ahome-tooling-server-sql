@@ -19,7 +19,7 @@ package com.ait.tooling.server.sql;
 import java.io.Serializable;
 import java.sql.SQLException;
 
-import com.ait.tooling.json.JSONObject;
+import com.ait.tooling.server.core.json.JSONObject;
 
 public interface IGSQLRowObjectMapper extends Serializable
 {

@@ -19,7 +19,7 @@ package com.ait.tooling.server.sql.support
 import groovy.sql.GroovyRowResult
 import groovy.transform.CompileStatic
 
-import com.ait.tooling.json.JSONObject
+import com.ait.tooling.server.core.json.JSONObject
 import com.ait.tooling.server.sql.GSQL
 import com.ait.tooling.server.sql.support.spring.GSQLContextInstance
 import com.ait.tooling.server.sql.support.spring.IGSQLContext

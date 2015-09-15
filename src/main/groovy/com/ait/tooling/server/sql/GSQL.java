@@ -37,8 +37,8 @@ import java.util.Objects;
 import javax.sql.DataSource;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.json.JSONArray;
-import com.ait.tooling.json.JSONObject;
+import com.ait.tooling.server.core.json.JSONArray;
+import com.ait.tooling.server.core.json.JSONObject;
 
 public class GSQL extends Sql implements Serializable
 {
