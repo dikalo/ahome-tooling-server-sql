@@ -60,7 +60,6 @@ public trait GSQLTrait
         getGSQLProvider().getDefaultSQLDescriptorName()
     }
 
-    @Memoized
     public GSQL gsql(final String name)
     {
         final IGSQLDescriptor desc = getSQLDescriptor(Objects.requireNonNull(name))
@@ -72,7 +71,6 @@ public trait GSQLTrait
         null
     }
 
-    @Memoized
     public GSQL gsql()
     {
         final IGSQLDescriptor desc = getSQLDescriptor()
