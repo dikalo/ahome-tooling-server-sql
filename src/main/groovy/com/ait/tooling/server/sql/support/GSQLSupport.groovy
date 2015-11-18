@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
+ * Copyright (c) 2014,2015,2016 Ahome' Innovation Technologies. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,9 @@ import com.ait.tooling.server.sql.support.spring.IGSQLDescriptor
 import com.ait.tooling.server.sql.support.spring.IGSQLProvider
 
 @CompileStatic
-public class GSQLSupport extends CoreGroovySupport implements Serializable
+public class GSQLSupport extends CoreGroovySupport
 {
     private static final GSQLSupport INSTANCE = new GSQLSupport()
-
-    private static final long serialVersionUID = 3717750280223820122L
 
     @Memoized
     public static final GSQLSupport getSQLSupport()
