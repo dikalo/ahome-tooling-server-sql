@@ -1,28 +1,8 @@
 /*
- * Copyright (c) 2014,2015,2016 Ahome' Innovation Technologies. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2014,2015,2016 Ahome' Innovation Technologies. All rights reserved. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
 package com.ait.tooling.server.sql;
-
-import groovy.sql.GroovyResultSet;
-import groovy.sql.GroovyRowResult;
-import groovy.sql.InOutParameter;
-import groovy.sql.InParameter;
-import groovy.sql.OutParameter;
-import groovy.sql.ResultSetOutParameter;
-import groovy.sql.Sql;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -40,9 +20,17 @@ import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.server.core.json.JSONArray;
 import com.ait.tooling.server.core.json.JSONObject;
 
+import groovy.sql.GroovyResultSet;
+import groovy.sql.GroovyRowResult;
+import groovy.sql.InOutParameter;
+import groovy.sql.InParameter;
+import groovy.sql.OutParameter;
+import groovy.sql.ResultSetOutParameter;
+import groovy.sql.Sql;
+
 public class GSQL extends Sql implements Serializable
 {
-    private static final long serialVersionUID = -5560768058212999307L;
+    private static final long                      serialVersionUID = -5560768058212999307L;
 
     private static IGSQLRowObjectMapper            s_default_row_object_mapper;
 
@@ -175,6 +163,18 @@ public class GSQL extends Sql implements Serializable
             handler.preProcessConnection(connection);
         }
         return connection;
+    }
+
+    @Override
+    protected AbstractQueryCommand createQueryCommand(final String sql)
+    {
+        return super.createQueryCommand(sql);
+    }
+
+    @Override
+    protected AbstractQueryCommand createPreparedQueryCommand(String sql, List<Object> queryParams)
+    {
+        return super.createPreparedQueryCommand(sql, queryParams);
     }
 
     public static final JSONObject json(final GroovyRowResult result) throws SQLException
