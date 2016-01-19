@@ -17,7 +17,6 @@
 package com.ait.tooling.server.sql.support.spring;
 
 import java.io.Closeable;
-import java.io.Serializable;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -29,7 +28,7 @@ import com.ait.tooling.server.sql.IGSQLPreProcessConnectionHandler;
 import com.ait.tooling.server.sql.IGSQLRowObjectMapper;
 import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 
-public interface IGSQLDescriptor extends INamedType, IActivatable, Closeable, Serializable
+public interface IGSQLDescriptor extends INamedType, IActivatable, Closeable
 {
     public DataSource getDataSource();
 

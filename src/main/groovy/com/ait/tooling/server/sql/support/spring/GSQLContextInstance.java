@@ -22,9 +22,7 @@ import com.ait.tooling.server.core.support.spring.ServerContextInstance;
 
 public class GSQLContextInstance extends ServerContextInstance implements IGSQLContext
 {
-    private static final long                serialVersionUID = 8487068206661824540L;
-
-    private static final GSQLContextInstance INSTANCE         = new GSQLContextInstance();
+    private static final GSQLContextInstance INSTANCE = new GSQLContextInstance();
 
     public static final GSQLContextInstance getGSQLContextInstance()
     {

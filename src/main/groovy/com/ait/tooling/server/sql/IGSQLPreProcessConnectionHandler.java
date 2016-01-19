@@ -16,11 +16,10 @@
 
 package com.ait.tooling.server.sql;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public interface IGSQLPreProcessConnectionHandler extends Serializable
+public interface IGSQLPreProcessConnectionHandler
 {
     public void preProcessConnection(Connection connection) throws SQLException;
 }

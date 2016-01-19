@@ -16,11 +16,10 @@
 
 package com.ait.tooling.server.sql;
 
-import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public interface IGSQLStatementSetObjectHandler extends Serializable
+public interface IGSQLStatementSetObjectHandler
 {
     public boolean setObject(PreparedStatement statement, int i, Object value) throws SQLException;
 }

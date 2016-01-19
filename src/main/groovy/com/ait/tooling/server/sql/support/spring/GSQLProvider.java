@@ -35,13 +35,11 @@ import com.ait.tooling.common.api.java.util.StringOps;
 @ManagedResource
 public class GSQLProvider implements BeanFactoryAware, IGSQLProvider
 {
-    private static final long                            serialVersionUID = 3673017438744046691L;
-
-    private static final Logger                          logger           = Logger.getLogger(GSQLProvider.class);
+    private static final Logger                          logger        = Logger.getLogger(GSQLProvider.class);
 
     private final String                                 m_default;
 
-    private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors    = new LinkedHashMap<String, IGSQLDescriptor>();
+    private final LinkedHashMap<String, IGSQLDescriptor> m_descriptors = new LinkedHashMap<String, IGSQLDescriptor>();
 
     public GSQLProvider(final String name)
     {

@@ -35,8 +35,6 @@ import com.ait.tooling.server.sql.IGSQLStatementSetObjectHandler;
 @ManagedResource
 public class GSQLDescriptor extends Activatable implements IGSQLDescriptor
 {
-    private static final long                      serialVersionUID = -8176488950309932959L;
-
     private String                                 m_name;
 
     private final DataSource                       m_data_source;
@@ -47,7 +45,7 @@ public class GSQLDescriptor extends Activatable implements IGSQLDescriptor
 
     private IGSQLRowObjectMapper                   m_row_object_mapper;
 
-    private String                                 m_description    = "Generic GSQLDescriptor";
+    private String                                 m_description = "Generic GSQLDescriptor";
 
     public GSQLDescriptor(final DataSource datasource)
     {

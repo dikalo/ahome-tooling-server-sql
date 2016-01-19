@@ -4,7 +4,6 @@
 
 package com.ait.tooling.server.sql;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,10 +27,8 @@ import groovy.sql.OutParameter;
 import groovy.sql.ResultSetOutParameter;
 import groovy.sql.Sql;
 
-public class GSQL extends Sql implements Serializable
+public class GSQL extends Sql
 {
-    private static final long                      serialVersionUID = -5560768058212999307L;
-
     private static IGSQLRowObjectMapper            s_default_row_object_mapper;
 
     private List<IGSQLStatementSetObjectHandler>   m_setobj_list;
@@ -90,14 +87,6 @@ public class GSQL extends Sql implements Serializable
         m_precon_list = list;
     }
 
-    /*
-     * Override protected setObject() to interpose a list of ISQLSetObjectHandler, which can examine the value class
-     * and do something special, i.e. Streams, Cursors, RAW, etc. If a handler returns true then it has done it's own
-     * setObject() on the PreparedStatement.
-     * (non-Javadoc)
-     * @see groovy.sql.Sql#setObject(java.sql.PreparedStatement, int, java.lang.Object)
-     */
-
     @Override
     protected void setObject(final PreparedStatement statement, final int i, final Object value) throws SQLException
     {
@@ -124,10 +113,6 @@ public class GSQL extends Sql implements Serializable
             }
         }
     }
-
-    /*
-     * This is just a reminder that we may need to clean up resources in the future, these are holding places to do that.
-     */
 
     @Override
     protected void closeResources(final Connection connection, final Statement statement, final ResultSet results)
