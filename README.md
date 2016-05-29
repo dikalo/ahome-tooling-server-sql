@@ -14,14 +14,22 @@ Maven:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
+<<<<<<< HEAD
   <version>1.1.0-RELEASE</version>
+=======
+  <version>1.0.158-SNAPSHOT</version>
+>>>>>>> branch 'master' of https://github.com/ahome-it/ahome-tooling-server-sql.git
 </dependency>
 ```
 Gradle:
 
 ```
 dependencies {
+<<<<<<< HEAD
     compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.1.0-RELEASE')
+=======
+    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.0.158-SNAPSHOT')
+>>>>>>> branch 'master' of https://github.com/ahome-it/ahome-tooling-server-sql.git
 }
 ```
 Javadoc URL:
