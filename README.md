@@ -12,13 +12,13 @@ RELEASE:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.1.11-RELEASE</version>
+  <version>1.1.12-RELEASE</version>
 </dependency>
 ```
 Gradle:
 ```
 dependencies {
-    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.1.11-RELEASE')
+    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.1.12-RELEASE')
 }
 ```
 Javadoc URL:
