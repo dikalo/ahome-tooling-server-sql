@@ -12,13 +12,13 @@ RELEASE:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-server-sql</artifactId>
-  <version>1.1.28-RELEASE</version>
+  <version>1.1.29-RELEASE</version>
 </dependency>
 ```
 Gradle:
 ```
 dependencies {
-    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.1.28-RELEASE')
+    compile(group:'com.ahome-it',name:'ahome-tooling-server-sql',version:'1.1.29-RELEASE')
 }
 ```
 Javadoc URL:
@@ -27,7 +27,7 @@ https://lienzo-core.com/documents/javadoc/ahome-tooling-server-sql
 
 License:
 
-Copyright (c) 2014,2015,2016 Ahome Innovation Technologies. All rights reserved.
+Copyright (c) 2017 Ahome Innovation Technologies. All rights reserved.
 
 Ahome Tooling Server SQL is released under version 2.0 of the Apache License.
 
